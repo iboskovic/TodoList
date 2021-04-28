@@ -1,0 +1,10 @@
+// icons.scss
+.icon {
+    &--remove {
+        content: url(../Assets/remove.svg);
+    }
+
+    &--check {
+        content: url(../Assets/check.svg);
+    }
+}

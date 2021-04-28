@@ -1,0 +1,44 @@
+// task.scss
+
+.task {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    &__line {
+        border-bottom: 2px solid #2980b9;
+        width: 400px;
+        position: absolute;
+        margin-top: 50px;
+    }
+    
+    button {
+        border: 1px solid rgb(196, 195, 195);
+        cursor: pointer;
+        transition: 300ms;
+    }
+
+    &__button {
+        padding: 0 24px;
+        &--success{
+            background-color: #2ecc71;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            
+            &:hover {
+                background-color: #27ae60;
+            }
+        }
+        &--remove {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            background-color: #e74c3c;
+
+            &:hover {
+                background-color: #c0392b;
+            }
+        }
+    }
+}
+  

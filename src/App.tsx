@@ -1,25 +1,73 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC, ChangeEvent, useState } from 'react';
+import './Styles/App.scss';
+import TodoTask from './Components/TodoTask';
+import {ITask} from './interfaces';
 
-function App() {
+const App: FC = () => {
+
+  const [task, setTask] = useState<string>("");
+  const [todoList, setTodoList] = useState<ITask[]>([]);
+
+  // create state for active div class
+  const [active, setActive] = useState(false);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setTask(event.target.value);
+  };
+
+  const addTask = (): void => {
+    const newTask = {taskName: task}
+    setTodoList([...todoList, newTask]);
+    //console.log(todoList);
+    setTask("");
+  };
+
+  const completeTask = (taskNameToDelete: string): void => {
+    setTodoList(todoList.filter((task) => {
+      return task.taskName != taskNameToDelete
+    }))
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="header">
+        <div className="header__links">
+          <a>Link 1</a>
+          <a>Link 2</a>
+          <a>Link 3</a>
+          <a>Link 4</a>
+        </div>
+        <div className="header__hamburger" onClick={() => setActive(!active)}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <div className="subHeader">
+        <div className="subHeader__inputContainer">
+          <input type="text" placeholder="Insert task..." name="task" value={task} onChange={handleChange}/>
+          <button type="submit" onClick={addTask}>Add Task</button>
+        </div>
+      </div>
+      <div className="section-container">
+          {/* <div className={active ? "sidebar" : "inactive"}> */}
+          <div className={`sidebar ${active ? 'active' : ''}`}>
+            <div className="sidebar__wrapper">
+              <a>Link 1</a>
+              <a>Link 2</a>
+              <a>Link 3</a>
+              <a>Link 4</a>
+              <a>Link 5</a>
+              <a>Link 6</a>
+            </div>
+          </div>
+        <div className={ active ? "todoList" : "sidebar-inactive"}>
+          {todoList.map((task: ITask, key: number) => {
+            return <TodoTask key={key} task={task} completeTask={completeTask}/>;
+          })}
+        </div>
+      </div>
+      </div>
   );
 }
 
