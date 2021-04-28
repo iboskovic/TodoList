@@ -38,9 +38,7 @@ const App: FC = () => {
           <a>Link 4</a>
         </div>
         <div className="header__hamburger" onClick={() => setActive(!active)}>
-          <div></div>
-          <div></div>
-          <div></div>
+          <div className={`header__hamburger__line ${active ? 'active' : ''}`}></div>
         </div>
       </div>
       <div className="subHeader">
