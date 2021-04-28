@@ -26,6 +26,11 @@
         cursor: pointer;
         padding: 23px 20px;
 
+        &:hover {
+            transform: scale(1.2);
+            transition: all 300ms ease-out;
+        }
+
         &__line {
             width: 25px;
             height: 3px;
