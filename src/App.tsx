@@ -38,7 +38,7 @@ const App: FC = () => {
     <div className="App">
       <div className="header">
         <div className="header__links">
-          <a>Link 1</a>
+          <a>Add New</a>
           <a>Link 2</a>
           <a>Link 3</a>
           <a>Link 4</a>
