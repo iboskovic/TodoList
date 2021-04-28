@@ -1,7 +1,7 @@
 import React, { FC, ChangeEvent, useState } from 'react';
 import './Styles/App.scss';
 import TodoTask from './Components/TodoTask';
-import {ITask} from './interfaces';
+import { ITask } from './interfaces';
 
 const App: FC = () => {
 
@@ -28,6 +28,12 @@ const App: FC = () => {
     }))
   }
 
+  const keyUp = (e: React.KeyboardEvent) => {
+    if( e.keyCode === 13) {
+      addTask();
+    }
+  };
+
   return (
     <div className="App">
       <div className="header">
@@ -43,7 +49,7 @@ const App: FC = () => {
       </div>
       <div className="subHeader">
         <div className="subHeader__inputContainer">
-          <input type="text" placeholder="Insert task..." name="task" value={task} onChange={handleChange}/>
+          <input type="text" onKeyUp={keyUp} placeholder="Insert task..." name="task" value={task} onChange={handleChange}/>
           <button type="submit" onClick={addTask}>Add Task</button>
         </div>
       </div>
