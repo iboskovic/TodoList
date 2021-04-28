@@ -1,5 +1,7 @@
 @import './icons.scss';
 @import './task.scss';
+@import './header.scss';
+@import './subHeader.scss';
 
 body {
   margin: 0;
@@ -11,78 +13,6 @@ a {
   cursor: pointer;
 }
 
-.nav {
-  background-color: rgb(0, 22, 44);
-  overflow: hidden;
-  height: 50px;
-  display: flex;
-  align-items: center;
-}
-
-.nav .links {
-  flex: 70%;
-}
-
-.nav .links a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  padding: 12px;
-}
-
-.nav .links a:hover {
-  color: rgb(124, 124, 124);
-}
-
-.nav .hamburger-menu {
-  margin-right: 20px;
-  cursor: pointer;
-  padding: 0 5px;
-}
-
-.nav .hamburger-menu:hover {
-  background-color: rgb(124, 124, 124);
-}
-
-
-.nav .hamburger-menu div {
-  width: 25px;
-  height: 2px;
-  background-color: white;
-  margin: 6px 0;
-}
-
-
-.header {
-  display: flex;
-  width: 100%;
-  background-color: #00203FFF;
-  height: 200px;
-  justify-content: center;
-  align-items: center;
-}
-
-.header input {
-  width: 200px;
-  height: 40px;
-  border: none;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-}
-
-.header button {
-  height: 42px;
-  border: none;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  cursor: pointer;
-}
-
-.header button:hover {
-  background-color: rgb(219, 219, 219);
-  transition: .3s;
-}
-
 .section-container {
   display: flex;
 }
@@ -90,8 +20,9 @@ a {
 .sidebar {
   width: 0;
   height: 100vh;
-  background-color: tomato;
+  background-color: #e74c3c;
   transition: width 300ms ease-out;
+  
   &.active {
     width: 200px;
   }
@@ -112,7 +43,7 @@ a {
 }
 
 .sidebar a:hover {
-  color: rgb(124, 124, 124);
+  color: rgb(63, 63, 63);
 }
 
 .todoList {
