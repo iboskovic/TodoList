@@ -3,6 +3,13 @@
 @import './header.scss';
 @import './subHeader.scss';
 
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 200px;
+}
 body {
   margin: 0;
   padding: 0;
@@ -33,7 +40,7 @@ a {
   }
 }
 
-.sidebar a {
+.sidebar .sideLinks {
   display: flex;
   font-size: 20px;
   text-decoration: none;
@@ -43,7 +50,7 @@ a {
   color: white;
 }
 
-.sidebar a:hover {
+.sidebar .sideLinks:hover {
   color: rgb(63, 63, 63);
 }
 
@@ -52,7 +59,7 @@ a {
   transition: width 300ms ease-out;
 }
 
-span {
+#spanTask {
   width: 400px;
   height: 50px;
   border: 1px solid grey;

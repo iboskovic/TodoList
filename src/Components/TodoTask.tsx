@@ -17,7 +17,7 @@ const TodoTask = ({ task, completeTask }: Props) => {
             </div>
             <button className="task__button task__button--success" onClick={() => setChecked(!checked)}><i className="icon--check"></i></button>
             <div className="content">
-                <span className={checked ? "checked" : "in-progress"}>{task.taskName}</span>
+                <span id="spanTask" className={checked ? "checked" : "in-progress"}>{task.taskName}</span>
             </div>
             <button className="task__button task__button--remove" onClick={() => {completeTask(task.taskName)}}><i className="icon--remove"></i></button>
         </div>
