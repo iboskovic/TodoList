@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ITask } from "../interfaces";
 
+
 interface Props {
     task: ITask;
     completeTask(taskNameToDelete: string): void;
@@ -17,7 +18,12 @@ const TodoTask = ({ task, completeTask }: Props) => {
             </div>
             <button className="task__button task__button--success" onClick={() => setChecked(!checked)}><i className="icon--check"></i></button>
             <div className="content">
-                <span id="spanTask" className={checked ? "checked" : "in-progress"}>{task.taskName}</span>
+                <div id="divTask" className={checked ? "checked" : "in-progress"}>
+                    <div className="prio">Priority</div>
+                    <div className="taskNameMiddle">{task.taskName}</div>
+                    <div className="date">Date</div>
+                </div>
+                
             </div>
             <button className="task__button task__button--remove" onClick={() => {completeTask(task.taskName)}}><i className="icon--remove"></i></button>
         </div>

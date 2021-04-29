@@ -8,6 +8,8 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 function AddNew () {
 
     const [task, setTask] = useState<string>("");
+    const [date, setDate] = useState<Date | null>();
+    const [prio, setPrio] =useState<string>("");
     const [todoList, setTodoList] = useState<ITask[]>([]);
 
     // create state for active div class
@@ -17,8 +19,12 @@ function AddNew () {
         setTask(event.target.value);
     };
 
+    const handleDate = (event: ChangeEvent<HTMLInputElement>): void => {
+        console.log(event.target.type);
+    }
+
     const addTask = (): void => {
-        const newTask = {taskName: task}
+        const newTask = {taskName: task, myDate: date}
         setTodoList([...todoList, newTask]);
         //console.log(todoList);
         setTask("");
@@ -44,8 +50,8 @@ function AddNew () {
                 </div>
                 <div className="subHeader__inputContainer">
                     <div className="createNew">Create New Task</div>
-                    <input type="text" onKeyUp={keyUp} placeholder="Insert task..." name="task" value={task} onChange={handleChange}/>
-                    <button type="submit" onClick={addTask}><i className="icon--plus"></i></button>
+                    {/* <input required type="text" onKeyUp={keyUp} placeholder="Insert task..." name="task" value={task} onChange={handleChange}/>
+                    <button type="submit" onClick={addTask}><i className="icon--plus"></i></button> */}
                 </div>
             </div>
             <div className="section-container">
@@ -61,6 +67,27 @@ function AddNew () {
                     </div>
                 </div>
                 <div className={ active ? "todoList" : "sidebar-inactive"}>
+                <div className="form">
+                    <div className="form__taskName">
+                        <div className="taskName">Task name</div>
+                        <input required type="text" placeholder="Task name..." name="task" value={task} onChange={handleChange}/>
+                    </div>
+                    <div className="form__dueDate">
+                        <div className="dueDate">Due Date</div>
+                        <input type="date" name="date" value="date" onChange={handleDate}/>
+                    </div>
+                    <div className="form__priority">
+                        <div className="priority">Priority</div>
+                        <div className="select">
+                            <select>
+                                <option value="0">High</option>
+                                <option value="1">Medium</option>
+                                <option value="2">Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button className="form__submitBtn" onClick={addTask}>Add Task</button>
+                </div>
                 {todoList.map((task: ITask, key: number) => {
                     return <TodoTask key={key} task={task} completeTask={completeTask}/>;
                 })}

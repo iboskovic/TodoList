@@ -41,4 +41,27 @@
         }
     }
 }
+
+.content {
+    display: flex;
+    align-items: center;
+    
+    .prio {
+        text-align: center;
+        width: 80px;
+        padding: 16px 0;
+    }
+
+    .taskNameMiddle {
+        text-align: center;
+        flex-grow: 2;
+        white-space: normal;
+    }
+
+    .date {
+        text-align: center;
+        width: 80px;
+        padding: 16px 0;
+    }
+}
   
