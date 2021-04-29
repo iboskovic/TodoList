@@ -24,10 +24,6 @@ const Main: FC = () => {
                 <div className="sidebar__wrapper">
                     <a className="sideLinks"><i className="icon--home"></i>Home</a>
                     <a className="sideLinks"><i className="icon--add"></i>Add New</a>
-                    <a className="sideLinks">Link 3</a>
-                    <a className="sideLinks">Link 4</a>
-                    <a className="sideLinks">Link 5</a>
-                    <a className="sideLinks">Link 6</a>
                 </div>
             </div>
             <div className={ active ? "todoList" : "sidebar-inactive"}>
