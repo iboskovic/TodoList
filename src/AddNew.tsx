@@ -50,8 +50,6 @@ function AddNew () {
                 </div>
                 <div className="subHeader__inputContainer">
                     <div className="createNew">Create New Task</div>
-                    {/* <input required type="text" onKeyUp={keyUp} placeholder="Insert task..." name="task" value={task} onChange={handleChange}/>
-                    <button type="submit" onClick={addTask}><i className="icon--plus"></i></button> */}
                 </div>
             </div>
             <div className="section-container">
@@ -70,7 +68,7 @@ function AddNew () {
                 <div className="form">
                     <div className="form__taskName">
                         <div className="taskName">Task name</div>
-                        <input required type="text" placeholder="Task name..." name="task" value={task} onChange={handleChange}/>
+                        <input required type="text"  placeholder="Task name..." name="task" value={task} onChange={handleChange}/>{/*onKeyUp={keyUp}*/}
                     </div>
                     <div className="form__dueDate">
                         <div className="dueDate">Due Date</div>
