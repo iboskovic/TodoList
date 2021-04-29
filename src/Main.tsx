@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { Link } from 'react-router-dom';
 
 // Home page display
 const Main: FC = () => {
@@ -22,8 +23,12 @@ const Main: FC = () => {
             {/* <div className={active ? "sidebar" : "inactive"}> */}
             <div className={`sidebar ${active ? 'active' : ''}`}>
                 <div className="sidebar__wrapper">
-                    <a className="sideLinks"><i className="icon--home"></i>Home</a>
-                    <a className="sideLinks"><i className="icon--add"></i>Add New</a>
+                    <Link to='/'>
+                        <a className="sideLinks"><i className="icon--home"></i>Home</a>
+                    </Link>
+                    <Link to ='/addnew'>
+                        <a className="sideLinks"><i className="icon--add"></i>Add New</a>
+                    </Link>
                 </div>
             </div>
             <div className={ active ? "todoList" : "sidebar-inactive"}>

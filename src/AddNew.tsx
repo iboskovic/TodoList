@@ -4,12 +4,13 @@ import { ITask } from './interfaces';
 import { Link } from 'react-router-dom';
 import './Styles/App.scss';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import moment from 'moment';
 
 function AddNew () {
 
     const [task, setTask] = useState<string>("");
-    const [date, setDate] = useState<Date>();
-    const [prio, setPrio] =useState<string>("");
+    const [date, setDate] = useState<string>(moment().format("YYYY-MM-DD"));
+    const [prio, setPrio] = useState<string>("");
     const [todoList, setTodoList] = useState<ITask[]>([]);
 
     // create state for active div class
@@ -19,14 +20,19 @@ function AddNew () {
         setTask(event.target.value);
     };
 
-    const handleDate = (event: ChangeEvent<HTMLInputElement>): void => {
-        console.log(event.target.type);
+    const handleDate = function (event: ChangeEvent<HTMLInputElement>) {
+        //console.log(event.target.value);
+        setDate(event.target.value);
     }
 
+    const handlePrio = (event: ChangeEvent<HTMLInputElement>): void => {
+        console.log(event.target.value);
+    };
+
     const addTask = (): void => {
-        const newTask = {taskName: task, myDate: date}
+        const newTask = {taskName: task, myDate: date, selection: prio}
         setTodoList([...todoList, newTask]);
-        //console.log(todoList);
+        console.log(todoList);
         setTask("");
     };
 
@@ -68,15 +74,15 @@ function AddNew () {
                     </div>
                     <div className="form__dueDate">
                         <div className="dueDate">Due Date</div>
-                        <input type="date" name="date" value="date" onChange={handleDate}/>
+                        <input type="date" name="date" value={date} onChange={handleDate}/>
                     </div>
                     <div className="form__priority">
                         <div className="priority">Priority</div>
                         <div className="select">
-                            <select>
-                                <option value="0">High</option>
-                                <option value="1">Medium</option>
-                                <option value="2">Low</option>
+                            <select value={prio}>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
                             </select>
                         </div>
                     </div>

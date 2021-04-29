@@ -21,7 +21,7 @@ const TodoTask = ({ task, completeTask }: Props) => {
                 <div id="divTask">
                     <div className="prio">Priority</div>
                     <div className={`taskNameMiddle ${checked ? "checked" : "in-progress"}`}>{task.taskName}</div>
-                    <div className="date">Date</div>
+                    <div className="date">{task.myDate}</div>
                 </div>
                 
             </div>
