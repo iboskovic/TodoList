@@ -8,7 +8,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 function AddNew () {
 
     const [task, setTask] = useState<string>("");
-    const [date, setDate] = useState<Date | null>();
+    const [date, setDate] = useState<Date>();
     const [prio, setPrio] =useState<string>("");
     const [todoList, setTodoList] = useState<ITask[]>([]);
 
@@ -58,10 +58,6 @@ function AddNew () {
                     <div className="sidebar__wrapper">
                     <a className="sideLinks"><i className="icon--home"></i>Home</a>
                     <a className="sideLinks"><i className="icon--add"></i>Add New</a>
-                    <a className="sideLinks">Link 3</a>
-                    <a className="sideLinks">Link 4</a>
-                    <a className="sideLinks">Link 5</a>
-                    <a className="sideLinks">Link 6</a>
                     </div>
                 </div>
                 <div className={ active ? "todoList" : "sidebar-inactive"}>

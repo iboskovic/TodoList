@@ -16,12 +16,6 @@ const Nav: FC = () => {
                 <Link to='/addnew'>
                     <a className="header__links__navLinks"><i className="icon--add"></i>Add New</a>
                 </Link>
-                <Link to='/addnew'>
-                    <a className="header__links__navLinks">Link 3</a>
-                </Link>
-                <Link to='/addnew'>
-                    <a className="header__links__navLinks">Link 4</a>
-                </Link>
             </div>
             
       </div>
