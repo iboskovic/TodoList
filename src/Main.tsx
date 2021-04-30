@@ -1,8 +1,25 @@
+import React, { Component, useEffect } from 'react';
 import { FC, useState } from "react";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { ITask } from "./interfaces";
+import { request } from 'node:http';
 
 // Home page display
 const Main: FC = () => {
+
+    // GET 
+    const [taskData, setTaskData] = useState<any[]>([])
+
+    useEffect(() => {
+        axios.get(`http://localhost:3000/tasks`).then(res => {
+            // console.log(res)
+            setTaskData(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }, []);
 
     // create state for active div class
     const [active, setActive] = useState(false);
@@ -32,15 +49,20 @@ const Main: FC = () => {
                 </div>
             </div>
             <div className={ active ? "todoList" : "sidebar-inactive"}>
-            <div className="task">
+            {taskData.map(task =><div className="task" key={task.id}>
                 <div className="task__line">
                 </div>
                 <button className="task__button task__button--success" onClick={() => setChecked(!checked)}><i className="icon--check"></i></button>
                 <div className="content">
-                    <span id="spanTask" className={checked ? "checked" : "in-progress"}>Task 1</span>
+                    <div id="divTask">
+                        <div className="prio">{task.priority}</div>
+                        <div className={`taskNameMiddle ${checked ? "checked" : "in-progress"}`}>{task.title}</div>
+                        <div className="date">{task.date}</div>
+                    </div>
+                    
                 </div>
                 <button className="task__button task__button--remove"><i className="icon--remove"></i></button>
-            </div>
+            </div>)}
             </div>
         </div>
         </div>

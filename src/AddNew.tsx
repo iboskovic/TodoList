@@ -1,12 +1,16 @@
-import React, { FC, ChangeEvent, useState } from 'react';
+import React, { FC, ChangeEvent, useState, useEffect } from 'react';
 import TodoTask from './Components/TodoTask';
 import { ITask } from './interfaces';
 import { Link } from 'react-router-dom';
 import './Styles/App.scss';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import moment from 'moment';
+import axios from 'axios';
+//import axios from './axios';
 
 function AddNew () {
+    
+    // POST axios api data
 
     const [task, setTask] = useState<string>("");
     const [date, setDate] = useState<string>(moment().format("YYYY-MM-DD"));
@@ -32,7 +36,7 @@ function AddNew () {
     const addTask = (): void => {
         const newTask = {taskName: task, myDate: date, selection: prio}
         setTodoList([...todoList, newTask]);
-        console.log(todoList);
+        //console.log(todoList);
         setTask("");
     };
 

@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 
 const Nav: FC = () => {
 
-    const [active, setActive] = useState(false);
-
     return (
         <div className="header">
             <div className="header__links">

@@ -2,11 +2,21 @@
   "tasks": [
     {
       "id": 1,
-      "title": "json-server"
+      "title": "task 1",
+      "date": "02-02-2021",
+      "priority": "High"
     },
     {
       "id": 2,
-      "title": "new title"
+      "title": "task 2",
+      "date": "05-12-2021",
+      "priority": "Low"
+    },
+    {
+      "id": 3,
+      "title": "task 3",
+      "date": "10-05-2021",
+      "priority": "Medium"
     }
   ]
 }
