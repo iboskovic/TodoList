@@ -10,7 +10,7 @@ function AddNew () {
 
     const [task, setTask] = useState<string>("");
     const [date, setDate] = useState<string>(moment().format("YYYY-MM-DD"));
-    const [prio, setPrio] = useState<string>("");
+    const [prio, setPrio] = useState("");
     const [todoList, setTodoList] = useState<ITask[]>([]);
 
     // create state for active div class
@@ -25,9 +25,9 @@ function AddNew () {
         setDate(event.target.value);
     }
 
-    const handlePrio = (event: ChangeEvent<HTMLInputElement>): void => {
-        console.log(event.target.value);
-    };
+    // const handlePrio = (event: ChangeEvent<HTMLInputElement>): void => {
+    //     setPrio(event.target.value);
+    // };
 
     const addTask = (): void => {
         const newTask = {taskName: task, myDate: date, selection: prio}
@@ -79,7 +79,10 @@ function AddNew () {
                     <div className="form__priority">
                         <div className="priority">Priority</div>
                         <div className="select">
-                            <select value={prio}>
+                            <select value={prio} onChange={(e) => {
+                                const selectedOption = e.target.value;
+                                setPrio(selectedOption);
+                            }}>
                                 <option value="High">High</option>
                                 <option value="Medium">Medium</option>
                                 <option value="Low">Low</option>
