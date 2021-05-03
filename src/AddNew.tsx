@@ -1,21 +1,37 @@
-import React, { FC, ChangeEvent, useState, useEffect } from 'react';
-import TodoTask from './Components/TodoTask';
+import React, { ChangeEvent, useState } from 'react';
 import { ITask } from './interfaces';
-import { Link } from 'react-router-dom';
 import './Styles/App.scss';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 //import axios from './axios';
 
 function AddNew () {
-    
-    // POST axios api data
 
     const [task, setTask] = useState<string>("");
     const [date, setDate] = useState<string>(moment().format("YYYY-MM-DD"));
     const [prio, setPrio] = useState("");
     const [todoList, setTodoList] = useState<ITask[]>([]);
+
+    // POST
+    const handleSubmit = () => {
+        const data = {
+            title: task,
+            date: date,
+            priority: prio 
+        };
+        axios.post(`http://localhost:3000/tasks`, data)
+        .then(res => {
+            console.log(res.data)
+            console.log("TASK ADDED!")
+            setTask('');
+            setDate('');
+            setPrio('');
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+        
 
     // create state for active div class
     const [active, setActive] = useState(false);
@@ -29,28 +45,12 @@ function AddNew () {
         setDate(event.target.value);
     }
 
-    // const handlePrio = (event: ChangeEvent<HTMLInputElement>): void => {
-    //     setPrio(event.target.value);
-    // };
 
-    const addTask = (): void => {
-        const newTask = {taskName: task, myDate: date, selection: prio}
-        setTodoList([...todoList, newTask]);
-        //console.log(todoList);
-        setTask("");
-    };
-
-    const completeTask = (taskNameToDelete: string): void => {
-        setTodoList(todoList.filter((task) => {
-            return task.taskName != taskNameToDelete
-        }))
-    }
-
-    const keyUp = (e: React.KeyboardEvent) => {
-        if( e.keyCode === 13) {
-            addTask();
-        }
-    }
+    // const keyUp = (e: React.KeyboardEvent) => {
+    //     if( e.keyCode === 13) {
+    //         addTask();
+    //     }
+    // }
 
     return (
         <Router>
@@ -74,7 +74,7 @@ function AddNew () {
                 <div className="form">
                     <div className="form__taskName">
                         <div className="taskName">Task name</div>
-                        <input required type="text"  placeholder="Task name..." name="task" value={task} onChange={handleChange}/>{/*onKeyUp={keyUp}*/}
+                        <input required type="text"  placeholder="Task name..." name="title" value={task} onChange={handleChange}/>{/*onKeyUp={keyUp}*/}
                     </div>
                     <div className="form__dueDate">
                         <div className="dueDate">Due Date</div>
@@ -93,11 +93,10 @@ function AddNew () {
                             </select>
                         </div>
                     </div>
-                    <button className="form__submitBtn" onClick={addTask}>Add Task</button>
+                    {/* <button className="form__submitBtn" onClick={addTask}>Add Task</button> */}
+                    <button className="form__submitBtn" onClick={handleSubmit}>Add Task</button>
                 </div>
-                {todoList.map((task: ITask, key: number) => {
-                    return <TodoTask key={key} task={task} completeTask={completeTask}/>;
-                })}
+                
                 </div>
             </div>
         </Router>

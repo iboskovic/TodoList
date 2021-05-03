@@ -1,7 +1,7 @@
 import React, { FC, ChangeEvent, useState } from 'react';
 //import './Styles/App.scss';
-import TodoTask from './Components/TodoTask';
 import { Link } from 'react-router-dom';
+
 
 const Nav: FC = () => {
 
@@ -14,6 +14,7 @@ const Nav: FC = () => {
                 <Link to='/addnew'>
                     <a className="header__links__navLinks"><i className="icon--add"></i>Add New</a>
                 </Link>
+                    <a className="header__links__navLinks"><i className="icon--edit"></i>Update</a>
             </div>
             
       </div>

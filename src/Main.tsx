@@ -21,10 +21,19 @@ const Main: FC = () => {
         })
     }, []);
 
+    function deleteTask(taskId: number) {
+        axios.delete(`http://localhost:3000/tasks/` + taskId).then(res => {
+            if(res.data != null) {
+                alert("Task Deleted.");
+                setTaskData(taskData.filter(task => task.id !== taskId))
+            }
+        });
+    }
+
     // create state for active div class
     const [active, setActive] = useState(false);
 
-    const [checked, setChecked] = useState(false);
+    // const [checked, setChecked] = useState(false);
 
     return (
         <div className="App">
@@ -52,16 +61,17 @@ const Main: FC = () => {
             {taskData.map(task =><div className="task" key={task.id}>
                 <div className="task__line">
                 </div>
-                <button className="task__button task__button--success" onClick={() => setChecked(!checked)}><i className="icon--check"></i></button>
+                <button className="task__button task__button--success"><i className="icon--edit-black"></i></button>
                 <div className="content">
                     <div id="divTask">
                         <div className="prio">{task.priority}</div>
-                        <div className={`taskNameMiddle ${checked ? "checked" : "in-progress"}`}>{task.title}</div>
+                        {/* <div className={`taskNameMiddle ${checked ? "checked" : "in-progress"}`}>{task.title}</div> */}
+                        <div className="taskNameMiddle">{task.title}</div>
                         <div className="date">{task.date}</div>
                     </div>
                     
                 </div>
-                <button className="task__button task__button--remove"><i className="icon--remove"></i></button>
+                <button className="task__button task__button--remove" onClick={() => deleteTask(task.id)}><i className="icon--remove"></i></button>
             </div>)}
             </div>
         </div>
