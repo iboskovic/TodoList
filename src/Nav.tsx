@@ -8,15 +8,9 @@ const Nav: FC = () => {
     return (
         <div className="header">
             <div className="header__links">
-                <Link to='/'>
-                    <a className="header__links__navLinks"><i className="icon--home"></i>Home</a>
-                </Link>
-                <Link to='/addnew'>
-                    <a className="header__links__navLinks"><i className="icon--add"></i>Add New</a>
-                </Link>
-                    <a className="header__links__navLinks"><i className="icon--edit"></i>Update</a>
+                <Link className="header__links__navLinks" to='/'><i className="icon--home"></i>Home</Link>
+                <Link className="header__links__navLinks" to='/addnew'><i className="icon--add"></i>Add New</Link>
             </div>
-            
       </div>
     )
 }

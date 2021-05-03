@@ -1,9 +1,10 @@
 import React, { Component, useEffect } from 'react';
 import { FC, useState } from "react";
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Link, useHistory } from 'react-router-dom';
 import { ITask } from "./interfaces";
 import { request } from 'node:http';
+import { prependOnceListener } from 'node:process';
 
 // Home page display
 const Main: FC = () => {
@@ -24,10 +25,17 @@ const Main: FC = () => {
     function deleteTask(taskId: number) {
         axios.delete(`http://localhost:3000/tasks/` + taskId).then(res => {
             if(res.data != null) {
-                alert("Task Deleted.");
-                setTaskData(taskData.filter(task => task.id !== taskId))
+                console.log('Task deleted.');
+                setTaskData(taskData.filter(task => task.id !== taskId));
             }
         });
+    }
+
+    let history = useHistory();
+
+    function updateTask (id: any) {
+        console.log(id);
+        history.push('/edit/' + id)
     }
 
     // create state for active div class
@@ -49,19 +57,15 @@ const Main: FC = () => {
             {/* <div className={active ? "sidebar" : "inactive"}> */}
             <div className={`sidebar ${active ? 'active' : ''}`}>
                 <div className="sidebar__wrapper">
-                    <Link to='/'>
-                        <a className="sideLinks"><i className="icon--home"></i>Home</a>
-                    </Link>
-                    <Link to ='/addnew'>
-                        <a className="sideLinks"><i className="icon--add"></i>Add New</a>
-                    </Link>
+                    <Link className="sideLinks" to='/home'><i className="icon--home"></i>Home</Link>
+                    <Link className="sideLinks" to ='/addnew'><i className="icon--add"></i>Add New</Link>
                 </div>
             </div>
             <div className={ active ? "todoList" : "sidebar-inactive"}>
             {taskData.map(task =><div className="task" key={task.id}>
                 <div className="task__line">
                 </div>
-                <button className="task__button task__button--success"><i className="icon--edit-black"></i></button>
+                    <button className="task__button task__button--success" onClick={() => updateTask(task.id)}><i className="icon--edit-black"></i></button>
                 <div className="content">
                     <div id="divTask">
                         <div className="prio">{task.priority}</div>
@@ -69,9 +73,9 @@ const Main: FC = () => {
                         <div className="taskNameMiddle">{task.title}</div>
                         <div className="date">{task.date}</div>
                     </div>
-                    
                 </div>
                 <button className="task__button task__button--remove" onClick={() => deleteTask(task.id)}><i className="icon--remove"></i></button>
+                {/* <input className="checkBox" type="checkbox"></input> */}
             </div>)}
             </div>
         </div>

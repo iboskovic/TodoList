@@ -1,31 +1,54 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { ITask } from './interfaces';
 import './Styles/App.scss';
-import {BrowserRouter as Router} from 'react-router-dom';
+import {BrowserRouter as Router, useHistory, useParams} from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 //import axios from './axios';
 
-function AddNew () {
+
+interface IParams{
+    id: string;
+}
+
+function Update () {
+
+    const [taskData, setTaskData] = useState<any[]>([])
+    //const id = taskData.map(task => task.id)
+    const { id } = useParams<IParams>();
+    
+    useEffect(() => {
+        axios.get(`http://localhost:3000/tasks/` + id).then(res => {
+            console.log(res.data)
+            setTask(res.data.title)
+            setDate(res.data.date)
+            setPrio(res.data.priority)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }, []);
 
     const [task, setTask] = useState<string>("");
     const [date, setDate] = useState<string>(moment().format("YYYY-MM-DD"));
     const [prio, setPrio] = useState("");
 
-    // POST
+    // PUT
+    let history = useHistory();
     const handleSubmit = () => {
         const data = {
             title: task,
             date: date,
             priority: prio 
         };
-        axios.post(`http://localhost:3000/tasks`, data)
+        axios.put(`http://localhost:3000/tasks/` + id, data)
         .then(res => {
             console.log(res.data)
-            console.log("TASK ADDED!")
+            console.log("Changes Saved.")
             setTask('');
             setDate('');
             setPrio('');
+            history.push("/")
         }).catch(err => {
             console.log(err)
         })
@@ -104,13 +127,12 @@ function AddNew () {
                         </div>
                     </div>
                     {/* <button className="form__submitBtn" onClick={addTask}>Add Task</button> */}
-                    <button className="form__submitBtn" onClick={handleSubmit}>Add Task</button>
+                    <button className="form__submitBtn" onClick={handleSubmit}>Save Changes</button>
                 </div>
-                
                 </div>
             </div>
         </Router>
     )
 }
 
-export default AddNew;
+export default Update;
