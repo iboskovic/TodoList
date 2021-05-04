@@ -1,10 +1,7 @@
-import React, { Component, useEffect } from 'react';
+import { useEffect } from 'react';
 import { FC, useState } from "react";
 import axios from 'axios';
-import { Link, useHistory } from 'react-router-dom';
-import { ITask } from "./interfaces";
-import { request } from 'node:http';
-import { prependOnceListener } from 'node:process';
+import { useHistory } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css'
 import { toast } from 'react-toastify';
 
@@ -15,11 +12,9 @@ const Main: FC = () => {
 
     // GET 
     const [taskData, setTaskData] = useState<any[]>([])
-    const [isChecked, setIsChecked] = useState(false);
 
     useEffect(() => {
         axios.get(`http://localhost:3000/tasks`).then(res => {
-            // console.log(res)
             setTaskData(res.data)
         })
         .catch(err => {
@@ -49,8 +44,6 @@ const Main: FC = () => {
     // create state for active div class
     const [active, setActive] = useState(false);
 
-    // const [checked, setChecked] = useState(false);
-
     return (
         <div className="App">
         <div className="subHeader">
@@ -62,11 +55,10 @@ const Main: FC = () => {
             </div>
         </div>
         <div className="section-container">
-            {/* <div className={active ? "sidebar" : "inactive"}> */}
             <div className={`sidebar ${active ? 'active' : ''}`}>
                 <div className="sidebar__wrapper">
-                    <Link className="sideLinks" to='/home'><i className="icon--home"></i>Home</Link>
-                    <Link className="sideLinks" to ='/addnew'><i className="icon--add"></i>Add New</Link>
+                    <a className="sideLinks"><i className="icon--home"></i>Home</a>
+                    <a className="sideLinks"><i className="icon--add"></i>Add New</a>
                 </div>
             </div>
             <div className={ active ? "todoList" : "sidebar-inactive"}>
@@ -77,14 +69,12 @@ const Main: FC = () => {
                 <div className="content">
                     <div id="divTask">
                         <div className="prio">{task.priority}</div>
-                        {/* <div className={`taskNameMiddle ${checked ? "checked" : "in-progress"}`}>{task.title}</div> */}
                         <div className="taskNameMiddle">{task.title}</div>
                         <div className="date">{task.date}</div>
                     </div>
                 </div>
                 {task.completed === false ? <button className="task__button task__button--remove" onClick={() => deleteTask(task.id)}><i className="icon--remove"></i></button>
                 : <button className="task__button task__button--remove"><i className="icon--remove"></i></button>}
-                {/* <input className="checkBox" type="checkbox"></input> */}
             </div>)}
             </div>
         </div>
@@ -92,4 +82,4 @@ const Main: FC = () => {
     );
 };
 
-  export default Main;
+export default Main;

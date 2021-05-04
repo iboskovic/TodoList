@@ -1,19 +1,28 @@
 import React, { ChangeEvent, useState } from 'react';
-import { ITask } from './interfaces';
-import './Styles/App.scss';
-import {BrowserRouter as Router} from 'react-router-dom';
+import '../styles/App.scss';
+import { toast } from 'react-toastify';
 import moment from 'moment';
 import axios from 'axios';
-import { toast } from 'react-toastify';
 
 toast.configure()
 
 function AddNew () {
 
+    // create state for active div class
+    const [active, setActive] = useState(false);
+
     const [task, setTask] = useState<string>("");
     const [date, setDate] = useState<string>(moment().format("YYYY-MM-DD"));
     const [prio, setPrio] = useState("");
     const [isChecked, setIsChecked] = useState(false);
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+        setTask(event.target.value);
+    };
+
+    const handleDate = function (event: ChangeEvent<HTMLInputElement>) {
+        setDate(event.target.value);
+    }
 
     // POST
     const handleSubmit = () => {
@@ -40,28 +49,9 @@ function AddNew () {
         });
     }
 
-
-    // create state for active div class
-    const [active, setActive] = useState(false);
-
-    const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-        setTask(event.target.value);
-    };
-
-    const handleDate = function (event: ChangeEvent<HTMLInputElement>) {
-        //console.log(event.target.value);
-        setDate(event.target.value);
-    }
-
-
-    // const keyUp = (e: React.KeyboardEvent) => {
-    //     if( e.keyCode === 13) {
-    //         addTask();
-    //     }
-    // }
-
     return (
-        <Router>
+
+        <div>
             <div className="subHeader">
                 <div className="subHeader__hamburger" onClick={() => setActive(!active)}>
                     <div className={`subHeader__hamburger__line ${active ? 'active' : ''}`}></div>
@@ -71,7 +61,6 @@ function AddNew () {
                 </div>
             </div>
             <div className="section-container">
-                {/* <div className={active ? "sidebar" : "inactive"}> */}
                 <div className={`sidebar ${active ? 'active' : ''}`}>
                     <div className="sidebar__wrapper">
                     <a className="sideLinks"><i className="icon--home"></i>Home</a>
@@ -106,13 +95,11 @@ function AddNew () {
                             <label htmlFor="completed">Completed</label>
                         </div>
                     </div>
-                    {/* <button className="form__submitBtn" onClick={addTask}>Add Task</button> */}
                     <button className="form__submitBtn" onClick={handleSubmit}>Add Task</button>
                 </div>
-                
                 </div>
             </div>
-        </Router>
+        </div>
     )
 }
 

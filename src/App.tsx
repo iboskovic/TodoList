@@ -1,5 +1,5 @@
-import './Styles/App.scss';
-import Nav from './Nav';
+import './styles/App.scss';
+import Nav from './components/Nav';
 import MainRouter from './MainRouter';
 
 
