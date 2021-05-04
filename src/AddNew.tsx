@@ -4,20 +4,24 @@ import './Styles/App.scss';
 import {BrowserRouter as Router} from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
-//import axios from './axios';
+import { toast } from 'react-toastify';
+
+toast.configure()
 
 function AddNew () {
 
     const [task, setTask] = useState<string>("");
     const [date, setDate] = useState<string>(moment().format("YYYY-MM-DD"));
     const [prio, setPrio] = useState("");
+    const [isChecked, setIsChecked] = useState(false);
 
     // POST
     const handleSubmit = () => {
         const data = {
             title: task,
             date: date,
-            priority: prio 
+            priority: prio,
+            completed: isChecked
         };
         axios.post(`http://localhost:3000/tasks`, data)
         .then(res => {
@@ -26,11 +30,16 @@ function AddNew () {
             setTask('');
             setDate('');
             setPrio('');
+            setIsChecked(isChecked);
         }).catch(err => {
             console.log(err)
         })
+
+        toast.success('Task Created.', {
+            autoClose: 2000
+        });
     }
-        
+
 
     // create state for active div class
     const [active, setActive] = useState(false);
@@ -93,14 +102,8 @@ function AddNew () {
                             </select>
                         </div>
                         <div className="checkBox">
-                            <div className="completed">
-                                <input type="checkbox" id="completed"/>
-                                <label htmlFor="completed">Completed</label>
-                            </div>
-                            <div className="notCompleted">
-                                <input type="checkbox" id="notCompleted"/>
-                                <label htmlFor="notCompleted">Not Completed</label>
-                            </div>
+                            <input type="checkbox" checked={isChecked} onChange={(e) => {setIsChecked(e.target.checked)}} id="completed"/>
+                            <label htmlFor="completed">Completed</label>
                         </div>
                     </div>
                     {/* <button className="form__submitBtn" onClick={addTask}>Add Task</button> */}

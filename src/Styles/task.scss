@@ -64,6 +64,49 @@
     }
 }
 
+.completed {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    .task__line {
+        border-bottom: none;
+    }
+    
+    button {
+        border: 1px solid rgb(196, 195, 195);
+        transition: 300ms;
+        cursor: default;
+    }
+
+    .task__button {
+        padding: 0 24px;
+        
+    }
+    .task__button--success{
+        background-color: #9b9b9b;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #5e5e5e;
+        }
+    }
+
+    .task__button--remove {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        background-color: #9b9b9b;
+    }
+
+    #divTask {
+        background-color: #9b9b9b;
+    }
+}
+
+
 // .checkBox {
 //    align-self: center;
 //    background-color: #ccc;

@@ -4,7 +4,9 @@ import './Styles/App.scss';
 import {BrowserRouter as Router, useHistory, useParams} from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
-//import axios from './axios';
+import { toast } from 'react-toastify';
+
+toast.configure()
 
 
 interface IParams{
@@ -13,7 +15,7 @@ interface IParams{
 
 function Update () {
 
-    const [taskData, setTaskData] = useState<any[]>([])
+    // const [taskData, setTaskData] = useState<any[]>([])
     //const id = taskData.map(task => task.id)
     const { id } = useParams<IParams>();
     
@@ -23,6 +25,7 @@ function Update () {
             setTask(res.data.title)
             setDate(res.data.date)
             setPrio(res.data.priority)
+            setIsChecked(res.data.completed)
         })
         .catch(err => {
             console.log(err)
@@ -32,6 +35,7 @@ function Update () {
     const [task, setTask] = useState<string>("");
     const [date, setDate] = useState<string>(moment().format("YYYY-MM-DD"));
     const [prio, setPrio] = useState("");
+    const [isChecked, setIsChecked] = useState(false);
 
     // PUT
     let history = useHistory();
@@ -39,7 +43,8 @@ function Update () {
         const data = {
             title: task,
             date: date,
-            priority: prio 
+            priority: prio,
+            completed: isChecked
         };
         axios.put(`http://localhost:3000/tasks/` + id, data)
         .then(res => {
@@ -48,10 +53,15 @@ function Update () {
             setTask('');
             setDate('');
             setPrio('');
+            setIsChecked(isChecked);
             history.push("/")
         }).catch(err => {
             console.log(err)
         })
+
+        toast.info('Task Updated.', {
+            autoClose: 2000
+        });
     }
         
 
@@ -116,14 +126,8 @@ function Update () {
                             </select>
                         </div>
                         <div className="checkBox">
-                            <div className="completed">
-                                <input type="checkbox" id="completed"/>
-                                <label htmlFor="completed">Completed</label>
-                            </div>
-                            <div className="notCompleted">
-                                <input type="checkbox" id="notCompleted"/>
-                                <label htmlFor="notCompleted">Not Completed</label>
-                            </div>
+                            <input type="checkbox" checked={isChecked} onChange={(e) => {setIsChecked(e.target.checked)}} id="completed"/>
+                            <label htmlFor="completed">Completed</label>
                         </div>
                     </div>
                     {/* <button className="form__submitBtn" onClick={addTask}>Add Task</button> */}

@@ -5,12 +5,17 @@ import { Link, useHistory } from 'react-router-dom';
 import { ITask } from "./interfaces";
 import { request } from 'node:http';
 import { prependOnceListener } from 'node:process';
+import 'react-toastify/dist/ReactToastify.css'
+import { toast } from 'react-toastify';
+
+toast.configure()
 
 // Home page display
 const Main: FC = () => {
 
     // GET 
     const [taskData, setTaskData] = useState<any[]>([])
+    const [isChecked, setIsChecked] = useState(false);
 
     useEffect(() => {
         axios.get(`http://localhost:3000/tasks`).then(res => {
@@ -28,6 +33,9 @@ const Main: FC = () => {
                 console.log('Task deleted.');
                 setTaskData(taskData.filter(task => task.id !== taskId));
             }
+        });
+        toast.error('Task Deleted.', {
+            autoClose: 2000
         });
     }
 
@@ -62,7 +70,7 @@ const Main: FC = () => {
                 </div>
             </div>
             <div className={ active ? "todoList" : "sidebar-inactive"}>
-            {taskData.map(task =><div className="task" key={task.id}>
+            {taskData.map(task =><div className={`task ${task.completed === true ? 'completed' : ''}`} key={task.id}>
                 <div className="task__line">
                 </div>
                     <button className="task__button task__button--success" onClick={() => updateTask(task.id)}><i className="icon--edit-black"></i></button>
@@ -74,7 +82,8 @@ const Main: FC = () => {
                         <div className="date">{task.date}</div>
                     </div>
                 </div>
-                <button className="task__button task__button--remove" onClick={() => deleteTask(task.id)}><i className="icon--remove"></i></button>
+                {task.completed === false ? <button className="task__button task__button--remove" onClick={() => deleteTask(task.id)}><i className="icon--remove"></i></button>
+                : <button className="task__button task__button--remove"><i className="icon--remove"></i></button>}
                 {/* <input className="checkBox" type="checkbox"></input> */}
             </div>)}
             </div>

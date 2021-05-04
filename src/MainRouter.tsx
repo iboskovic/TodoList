@@ -7,11 +7,11 @@ import Update from './Update';
 const MainRouter: React.FC = () => {
 
     return (
-            <Switch>
-                <Route path="/" exact component={Main} />
-                <Route path="/addnew" component={AddNew} />
-                <Route path="/edit/:id" component={Update} />
-            </Switch>
+        <Switch>
+            <Route path="/" exact component={Main} />
+            <Route path="/addnew" component={AddNew} />
+            <Route path="/edit/:id" component={Update} />
+        </Switch>
     );
 };
 
