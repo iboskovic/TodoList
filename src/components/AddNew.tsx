@@ -1,8 +1,7 @@
-import React, { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import '../styles/App.scss';
 import { toast } from 'react-toastify';
 import moment from 'moment';
-import axios from 'axios';
 import TaskForm from './TaskForm';
 import ITasks from '../types/ITask';
 import TaskService from '../service/TaskService';

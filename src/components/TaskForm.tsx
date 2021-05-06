@@ -2,8 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import '../styles/App.scss';
 import { toast } from 'react-toastify';
 import moment from 'moment';
-import axios from 'axios';
-import ITasks from '../types/ITask';
+import ITask from '../types/ITask';
 import { useParams } from 'react-router-dom';
 import IParams from '../types/IParams';
 import TaskService from '../service/TaskService';
@@ -11,38 +10,29 @@ import TaskService from '../service/TaskService';
 toast.configure()
 
 interface IProps{
-    onSubmit: (task: ITasks) => void
+    onSubmit: (task: ITask) => void
 }
 
 const TaskForm: React.FC<IProps> = (props) => {
     
     const { id } = useParams<IParams>();
 
-    // const service = new TaskService();
+    const service = new TaskService();
 
-    // const fetchData = async () =>
-    // {
-    //     const res = await service.get();
-    //     setTask(res.title);
-    //     setDate(res.date);
-    //     setPrio(res.priority);
-    //     setIsChecked(res.completed);
-    // }
+    const fetchData = async () =>
+    {
+        const res = await service.getId(id)
 
-    // useEffect(() => {
-    //     fetchData();
-    // }, []);
+        setTask(res.data.title);
+        setDate(res.data.date);
+        setPrio(res.data.priority);
+        setIsChecked(res.data.completed);
+    }
     
     useEffect(() => {
-        axios.get(`http://localhost:3000/tasks/` + id).then(res => {
-            setTask(res.data.title)
-            setDate(res.data.date)
-            setPrio(res.data.priority)
-            setIsChecked(res.data.completed)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+        if (id) {
+            fetchData();
+        }
     }, []);
 
     

@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { FC, useState } from "react";
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
@@ -22,20 +21,20 @@ const Main: FC = () => {
         setTaskData(res)
     }
 
+
     useEffect(() => {
         fetchData();
     }, []);
 
     function deleteTask(taskId: number) {
-        axios.delete(`http://localhost:3000/tasks/` + taskId).then(res => {
-            if(res.data != null) {
-                console.log('Task deleted.');
-                setTaskData(taskData.filter(task => task.id !== taskId));
-            }
-        });
-        toast.error('Task Deleted.', {
-            autoClose: 2000
-        });
+        const res = service.delete(taskId);
+        if (res !== null) {
+            setTaskData(taskData.filter(task => task.id !== taskId))
+            console.log('Task Deleted.')
+            toast.error('Task Deleted.', {
+                autoClose: 2000
+            });
+        }
     }
 
     let history = useHistory();

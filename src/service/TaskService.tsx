@@ -17,4 +17,15 @@ export default class TaskService extends BaseService
         const res = await this.instance.put("tasks/" + id , data);
         return res;
     }
+
+    async delete(taskId: number) {
+        const res = await this.instance.delete("tasks/" + taskId);
+        return res;
+    }
+
+    //get default values from id
+    async getId(id: string) {
+        const res = await this.instance.get<ITask>("tasks/" + id)
+        return res;
+    }
 }

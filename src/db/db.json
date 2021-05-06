@@ -1,100 +1,65 @@
 {
   "tasks": [
     {
-      "title": "Task 12",
-      "date": "2021-05-14",
-      "priority": "Medium",
-      "completed": false,
-      "id": 1
-    },
-    {
-      "title": "Task 6",
-      "date": "2021-05-06",
-      "priority": "Low",
-      "completed": false,
-      "id": 6
-    },
-    {
-      "title": "Task 5",
+      "title": "Task 8",
       "date": "2021-05-19",
       "priority": "High",
       "completed": true,
       "id": 8
     },
     {
-      "title": "Task 4",
+      "title": "Task 9",
       "date": "2021-05-13",
       "priority": "Medium",
       "completed": false,
       "id": 9
     },
     {
-      "title": "Task 10",
-      "date": "2021-05-20",
-      "priority": "Low",
-      "completed": false,
-      "id": 10
-    },
-    {
-      "title": "Task 17",
+      "title": "Task 12",
       "date": "2021-05-07",
       "priority": "Low",
       "completed": true,
       "id": 12
     },
     {
-      "title": "Task 8",
+      "title": "Task 13",
       "date": "2021-05-15",
       "priority": "Low",
       "completed": false,
       "id": 13
     },
     {
-      "title": "Task 49",
+      "title": "Task 14",
       "date": "2021-05-15",
       "priority": "High",
       "completed": true,
       "id": 14
     },
     {
-      "title": "Task 7",
+      "title": "Task 15",
       "date": "2021-05-07",
       "priority": "High",
       "completed": false,
       "id": 15
     },
     {
-      "title": "Task 24",
-      "date": "2021-05-16",
-      "priority": "Medium",
-      "completed": false,
-      "id": 16
-    },
-    {
-      "title": "Task 10",
-      "date": "2021-05-02",
-      "priority": "Medium",
-      "completed": false,
-      "id": 17
-    },
-    {
-      "title": "Task 8",
+      "title": "Task 19",
       "date": "2021-05-01",
       "priority": "Medium",
       "completed": true,
       "id": 19
     },
     {
-      "title": "Task 5",
-      "date": "2021-05-05",
+      "title": "Task 20",
+      "date": "2021-05-07",
       "priority": "High",
       "completed": false,
       "id": 20
     },
     {
-      "title": "Task 6",
-      "date": "2021-05-10",
-      "priority": "Low",
+      "title": "Task 20",
+      "date": "2021-05-16",
+      "priority": "Medium",
       "completed": true,
       "id": 21
     }
