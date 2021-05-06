@@ -54,7 +54,7 @@ const Main: FC = () => {
                 <div className={`subHeader__hamburger__line ${active ? 'active' : ''}`}></div>
             </div>
             <div className="subHeader__inputContainer">
-            <div className="created">Created Tasks</div>
+                <div className="created">Created Tasks</div>
             </div>
         </div>
         <div className="flex">
@@ -65,6 +65,19 @@ const Main: FC = () => {
                 </div>
             </div>
             <div className={ active ? "todoList" : "sidebar-inactive"}>
+            <div className="filterContainer">
+                <div className="filterContainer__filter">
+                    <input type="text" placeholder="Search..." className="filter--input"/>
+                </div>
+                <div className="filterContainer__sort">
+                    <select name="sorter" className="sort--input">
+                        <option value="">--Sort by--</option>
+                        <option value="priority">Priority</option>
+                        <option value="taskName">Task name</option>
+                        <option value="date">Date</option>
+                    </select>
+                </div>
+            </div>
             {taskData.map(task =><div className={`task ${task.completed === true ? 'completed' : ''}`} key={task.id}>
                 <div className="task__line">
                 </div>

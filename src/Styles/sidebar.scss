@@ -32,3 +32,28 @@
   width: 100%;
 }
 
+.filterContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  &__filter {
+    margin-right: 110px;    
+
+      .filter--input {
+        padding: 5px;
+        border: 1px solid rgb(196, 195, 195);
+        border-radius: 8px;
+      }
+  }
+
+  &__sort {
+
+      .sort--input {
+        padding: 5px;
+        border: 1px solid rgb(196, 195, 195);
+        border-radius: 8px;
+      }
+  }
+}
+
