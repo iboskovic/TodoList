@@ -3,6 +3,10 @@ import '../styles/App.scss';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 import axios from 'axios';
+import TaskForm from './TaskForm';
+import ITasks from '../types/ITask';
+import TaskService from '../service/TaskService';
+import ITask from '../types/ITask';
 
 toast.configure()
 
@@ -16,41 +20,27 @@ function AddNew () {
     const [prio, setPrio] = useState("");
     const [isChecked, setIsChecked] = useState(false);
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-        setTask(event.target.value);
-    };
+    const service = new TaskService();
 
-    const handleDate = function (event: ChangeEvent<HTMLInputElement>) {
-        setDate(event.target.value);
-    }
-
-    // POST
-    const handleSubmit = () => {
-        const data = {
-            title: task,
-            date: date,
-            priority: prio,
-            completed: isChecked
-        };
-        axios.post(`http://localhost:3000/tasks`, data)
-        .then(res => {
-            console.log(res.data)
-            console.log("TASK ADDED!")
-            setTask('');
-            setDate('');
-            setPrio('');
-            setIsChecked(isChecked);
-        }).catch(err => {
-            console.log(err)
-        })
-
+    const postData = async (data: ITask) =>
+    {
+        const res = await service.post(data);
+        console.log(res.data);
+        setTask('');
+        setDate('');
+        setPrio('');
+        setIsChecked(isChecked);
         toast.success('Task Created.', {
             autoClose: 2000
         });
     }
+    
+    // POST
+    const handleSubmit = (data: ITasks) => {
+        postData(data);
+    }
 
     return (
-
         <div>
             <div className="subHeader">
                 <div className="subHeader__hamburger" onClick={() => setActive(!active)}>
@@ -60,7 +50,7 @@ function AddNew () {
                     <div className="createNew">Create New Task</div>
                 </div>
             </div>
-            <div className="section-container">
+            <div className="flex">
                 <div className={`sidebar ${active ? 'active' : ''}`}>
                     <div className="sidebar__wrapper">
                     <a className="sideLinks"><i className="icon--home"></i>Home</a>
@@ -68,35 +58,7 @@ function AddNew () {
                     </div>
                 </div>
                 <div className={ active ? "todoList" : "sidebar-inactive"}>
-                <div className="form">
-                    <div className="form__taskName">
-                        <div className="taskName">Task name</div>
-                        <input required type="text"  placeholder="Task name..." name="title" value={task} onChange={handleChange}/>{/*onKeyUp={keyUp}*/}
-                    </div>
-                    <div className="form__dueDate">
-                        <div className="dueDate">Due Date</div>
-                        <input type="date" name="date" value={date} onChange={handleDate}/>
-                    </div>
-                    <div className="form__priority">
-                        <div className="priority">Priority</div>
-                        <div className="select">
-                            <select value={prio} onChange={(e) => {
-                                const selectedOption = e.target.value;
-                                setPrio(selectedOption);
-                            }}>
-                                <option value="">-Please select-</option>
-                                <option value="High">High</option>
-                                <option value="Medium">Medium</option>
-                                <option value="Low">Low</option>
-                            </select>
-                        </div>
-                        <div className="checkBox">
-                            <input type="checkbox" checked={isChecked} onChange={(e) => {setIsChecked(e.target.checked)}} id="completed"/>
-                            <label htmlFor="completed">Completed</label>
-                        </div>
-                    </div>
-                    <button className="form__submitBtn" onClick={handleSubmit}>Add Task</button>
-                </div>
+                    <TaskForm onSubmit={handleSubmit}/>
                 </div>
             </div>
         </div>

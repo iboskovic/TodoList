@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import { FC, useState } from "react";
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import TaskService from '../service/TaskService';
 
 toast.configure()
 
@@ -13,13 +14,16 @@ const Main: FC = () => {
     // GET 
     const [taskData, setTaskData] = useState<any[]>([])
 
+    const service = new TaskService();
+
+    const fetchData = async () =>
+    {
+        const res = await service.get();
+        setTaskData(res)
+    }
+
     useEffect(() => {
-        axios.get(`http://localhost:3000/tasks`).then(res => {
-            setTaskData(res.data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+        fetchData();
     }, []);
 
     function deleteTask(taskId: number) {
@@ -54,7 +58,7 @@ const Main: FC = () => {
             <div className="created">Created Tasks</div>
             </div>
         </div>
-        <div className="section-container">
+        <div className="flex">
             <div className={`sidebar ${active ? 'active' : ''}`}>
                 <div className="sidebar__wrapper">
                     <a className="sideLinks"><i className="icon--home"></i>Home</a>

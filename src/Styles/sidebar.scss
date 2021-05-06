@@ -1,0 +1,34 @@
+.sidebar {
+    width: 0;
+    height: 100vh;
+    background-color: #e74c3c;
+    transition: width 300ms ease-out;
+    border-right: 2px solid #2c3e50;
+    
+    &.active {
+      width: 200px;
+    }
+  
+    &__wrapper {
+      min-width: 200px;
+    }
+}
+  
+.sidebar .sideLinks {
+  display: flex;
+  font-size: 20px;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  color: white;
+}
+
+.sidebar .sideLinks:hover {
+  color: rgb(63, 63, 63);
+}
+
+.sidebar-inactive {
+  width: 100%;
+}
+
