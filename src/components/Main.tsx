@@ -7,11 +7,13 @@ import TaskService from '../service/TaskService';
 import { ChangeEvent } from 'react';
 import _, { filter } from "lodash";
 import ITask from '../types/ITask';
+const Moment = require('moment');
 
 toast.configure()
 
 enum SortDirection
 {
+    None = "",
     Asc = "asc",
     Desc = "desc"
 }
@@ -22,6 +24,7 @@ const Main: FC = () => {
     // GET 
     const [search, setSearch] = useState("");
     const [taskData, setTaskData] = useState<any[]>([]);
+    const [sortBy, setSortBy] = useState<SortDirection>(SortDirection.None);
     const service = new TaskService();
 
     const handlechange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -57,7 +60,17 @@ const Main: FC = () => {
     
     useEffect(() => {
         fetchData();
+        //setSortBy(SortDirection.None);
     }, []);
+
+    useEffect(() => {
+        let currentData: ITask[] = _.cloneDeep(taskData);
+        let sortedArray = currentData.sort((a, b) => new Moment(a.date).format('YYYYMMDD') - new Moment(b.date).format('YYYYMMDD'));
+        if(sortBy === SortDirection.Desc){
+            sortedArray.reverse()
+        }
+        setTaskData(sortedArray);
+    }, [sortBy])
     
     function deleteTask(taskId: number) {
         const res = service.delete(taskId);
@@ -79,19 +92,11 @@ const Main: FC = () => {
     
     // create state for active div class
     const [active, setActive] = useState(false);
-    
-    let sortDirection  = SortDirection.Desc;
-    const toggleSortDate = () => {
-        const Moment = require('moment');
-        let currentData: ITask[] = _.cloneDeep(taskData);
-        let sortedArray = currentData.sort((a, b) => new Moment(a.date).format('YYYYMMDD') - new Moment(b.date).format('YYYYMMDD'));
-        if(sortDirection === SortDirection.Asc)
-            sortedArray.reverse()
 
-        // console.log(sortDirection);
-        console.log(sortedArray);
-        // setTaskData(sortedArray);
-        sortDirection = sortDirection === SortDirection.Asc ? SortDirection.Desc : SortDirection.Asc; 
+    const toggleSortDate = () => {
+        const val = sortBy === SortDirection.None || sortBy  === SortDirection.Desc ? SortDirection.Asc : SortDirection.Desc;
+        setSortBy(val);
+
     }
 
     return (
@@ -117,7 +122,12 @@ const Main: FC = () => {
                     <input type="text" placeholder="Search..." className="filter--input" onChange={handlechange}/>
                 </div>
                 <div className="filterContainer__sort">
-                    <button className="sort--input" onClick={toggleSortDate}>Sort by newer</button>
+                    <button className="sort--input" onClick={toggleSortDate}>Sort by date</button>
+                    {/* <select className="sort--input">
+                        <option value="">--Sort by--</option>
+                        <option value="newer" onChange={toggleSortNewer}>Newer</option>
+                        <option value="older" onChange={toggleSortOlder}>Older</option>
+                    </select> */}
                 </div>
             </div>
             {taskData.filter(filterBy).map(task =><div className={`task ${task.completed === true ? 'completed' : ''}`} key={task.id}>
