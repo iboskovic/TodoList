@@ -80,30 +80,19 @@ const Main: FC = () => {
     // create state for active div class
     const [active, setActive] = useState(false);
     
-    const Moment = require('moment');
-    let currentData: ITask[] = _.cloneDeep(taskData);
-    let sortedArrayDesc = currentData.sort((a, b) => new Moment(a.date).format('YYYYMMDD') - new Moment(b.date).format('YYYYMMDD'));
-    let sortedArrayAsc = sortedArrayDesc.reverse();
-    const sortDateNew = () => {
-        setTaskData(sortedArrayDesc);
-    }
+    let sortDirection  = SortDirection.Desc;
+    const toggleSortDate = () => {
+        const Moment = require('moment');
+        let currentData: ITask[] = _.cloneDeep(taskData);
+        let sortedArray = currentData.sort((a, b) => new Moment(a.date).format('YYYYMMDD') - new Moment(b.date).format('YYYYMMDD'));
+        if(sortDirection === SortDirection.Asc)
+            sortedArray.reverse()
 
-    const sortDateOld = () => {
-        setTaskData(sortedArrayAsc);
+        // console.log(sortDirection);
+        console.log(sortedArray);
+        // setTaskData(sortedArray);
+        sortDirection = sortDirection === SortDirection.Asc ? SortDirection.Desc : SortDirection.Asc; 
     }
-    // let sortDirection  = SortDirection.Desc;
-    // const toggleSortDate = () => {
-    //     const Moment = require('moment');
-    //     let currentData: ITask[] = _.cloneDeep(taskData);
-    //     let sortedArray = currentData.sort((a, b) => new Moment(a.date).format('YYYYMMDD') - new Moment(b.date).format('YYYYMMDD'));
-    //     if(sortDirection === SortDirection.Asc)
-    //         sortedArray.reverse()
-
-    //     // console.log(sortDirection);
-    //     console.log(sortedArray);
-    //     // setTaskData(sortedArray);
-    //     sortDirection = sortDirection === SortDirection.Asc ? SortDirection.Desc : SortDirection.Asc; 
-    // }
 
     return (
         <div className="App">
@@ -128,8 +117,7 @@ const Main: FC = () => {
                     <input type="text" placeholder="Search..." className="filter--input" onChange={handlechange}/>
                 </div>
                 <div className="filterContainer__sort">
-                    <button className="sort--input" onClick={sortDateNew}>Sort by newer</button>
-                    <button className="sort--input" onClick={sortDateOld}>Sort by older</button>
+                    <button className="sort--input" onClick={toggleSortDate}>Sort by newer</button>
                 </div>
             </div>
             {taskData.filter(filterBy).map(task =><div className={`task ${task.completed === true ? 'completed' : ''}`} key={task.id}>
