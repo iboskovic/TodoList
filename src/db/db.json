@@ -18,7 +18,7 @@
       "title": "Task 13",
       "date": "2021-05-15",
       "priority": "Low",
-      "completed": false,
+      "completed": true,
       "id": 13
     },
     {
@@ -53,14 +53,14 @@
       "title": "Task 17",
       "date": "2021-06-19",
       "priority": "Medium",
-      "completed": true,
+      "completed": false,
       "id": 24
     },
     {
       "title": "Task 18",
       "date": "2021-07-03",
       "priority": "Low",
-      "completed": false,
+      "completed": true,
       "id": 25
     },
     {
@@ -76,6 +76,13 @@
       "priority": "High",
       "completed": false,
       "id": 27
+    },
+    {
+      "title": "Task 1",
+      "date": "2021-11-26",
+      "priority": "Low",
+      "completed": true,
+      "id": 28
     }
   ]
 }

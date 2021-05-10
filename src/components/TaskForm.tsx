@@ -81,7 +81,7 @@ const TaskForm: React.FC<IProps> = (props) => {
                         <input className="checkBox--small" type="checkbox" checked={isChecked} onChange={(e) => {setIsChecked(e.target.checked)}} id="completed"/>
                         <label htmlFor="completed">Completed</label>
                     </div>
-                <button className="card__submitBtn" onClick={() =>props.onSubmit({title: task, date: date, priority: prio, completed: isChecked})}>Add Task / Update</button>
+                <button className="card__btn" onClick={() =>props.onSubmit({title: task, date: date, priority: prio, completed: isChecked})}>Add Task / Update</button>
             </div>
         </div>
   )}
