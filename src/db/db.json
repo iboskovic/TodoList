@@ -69,6 +69,13 @@
       "priority": "Medium",
       "completed": true,
       "id": 26
+    },
+    {
+      "title": "Task 8",
+      "date": "2021-09-17",
+      "priority": "High",
+      "completed": false,
+      "id": 27
     }
   ]
 }

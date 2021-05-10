@@ -57,17 +57,12 @@
             flex-grow: 2;
             white-space: normal;
         }
-    
     }
 }
 
 .taskCompleted {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
     opacity: 0.4;
-    
+
     .task__button--success{
         background-color: #ffffff;
 
@@ -81,4 +76,3 @@
         cursor: default;
     }
 }
-  
