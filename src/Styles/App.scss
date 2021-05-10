@@ -3,15 +3,17 @@
 @import './global/normalize.scss';
 
 @import './components/task.scss';
-@import './layout/main.scss';
+@import './layout/main-sidebar.scss';
+@import './layout/main-content.scss';
 @import './layout/nav.scss';
 @import './layout/subHeader.scss';
 @import './components/input.scss';
 @import './components/card.scss';
 @import './components/field.scss';
+@import './components/btn.scss';
 
 @import './utils/icons.scss';
-@import './utils/icons.scss';
+@import './utils/flex.scss';
 
 
 

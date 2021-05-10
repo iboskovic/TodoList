@@ -3,7 +3,7 @@
     {
       "title": "Task 9",
       "date": "2021-05-13",
-      "priority": "Medium",
+      "priority": "High",
       "completed": false,
       "id": 9
     },
@@ -41,13 +41,6 @@
       "priority": "High",
       "completed": false,
       "id": 20
-    },
-    {
-      "title": "Task 5",
-      "date": "2021-04-16",
-      "priority": "Low",
-      "completed": false,
-      "id": 23
     },
     {
       "title": "Task 17",

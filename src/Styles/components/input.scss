@@ -1,3 +1,5 @@
+// input.scss
+
 input, select {
     width: 400px;
     height: 50px;
@@ -11,16 +13,6 @@ input, select {
     border: 1px solid grey;
     border-radius: 8px;
     margin-left: 30px;
-}
-
-.btn--transparent {
-    background-color: transparent;
-    cursor: pointer;
-    width: 110px;
-
-    &:hover {
-        opacity: 0.7;
-    }
 }
 
 .checkBox--small {

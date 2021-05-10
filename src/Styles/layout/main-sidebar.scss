@@ -1,6 +1,7 @@
+// main-sidebar.scss
+
 .main {
-    display: flex;
-  
+
     &__sidebar {
         width: 0;
         height: 100vh;
@@ -29,21 +30,6 @@
             opacity: 0.5;
           }
         }
-    }
-  
-    &__content {
-      width: calc(100% - 200px);
-      transition: width 300ms ease-out;
-  
-      &--widthFull {
-        width: 100%;
-      }
-
-      &__filters {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-      }
     }
 }
 
