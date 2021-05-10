@@ -4,7 +4,7 @@
       "title": "Task 9",
       "date": "2021-05-13",
       "priority": "Medium",
-      "completed": true,
+      "completed": false,
       "id": 9
     },
     {
@@ -53,8 +53,22 @@
       "title": "Task 17",
       "date": "2021-06-19",
       "priority": "Medium",
-      "completed": false,
+      "completed": true,
       "id": 24
+    },
+    {
+      "title": "Task 18",
+      "date": "2021-07-03",
+      "priority": "Low",
+      "completed": false,
+      "id": 25
+    },
+    {
+      "title": "Task 4",
+      "date": "2021-08-05",
+      "priority": "Medium",
+      "completed": true,
+      "id": 26
     }
   ]
 }

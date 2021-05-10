@@ -1,14 +1,17 @@
-@import './base.scss';
-@import './typography.scss';
+@import './base/base.scss';
+@import './base/typography.scss';
+@import './global/normalize.scss';
 
-@import './task.scss';
-@import './header.scss';
-@import './subHeader.scss';
-@import './sidebar.scss';
-@import './form.scss';
-@import './icons.scss';
+@import './components/task.scss';
+@import './layout/main.scss';
+@import './layout/nav.scss';
+@import './layout/subHeader.scss';
+@import './components/card.scss';
+@import './components/input.scss';
+@import './components/field.scss';
 
-@import './flex.scss';
+@import './utils/icons.scss';
+@import './utils/icons.scss';
 
 
 

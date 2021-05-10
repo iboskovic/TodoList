@@ -1,0 +1,48 @@
+// icons.scss
+.icon {
+    &--remove {
+        content: url(/assets/remove.svg);
+    }
+
+    &--check {
+        content: url(/assets/check.svg);
+    }
+
+    &--plus {
+        content: url(/assets/plus.svg);
+    }
+
+    &--add {
+        content: url(/assets/add.svg);
+    }
+
+    &--home {
+        content: url(/assets/home.svg);
+    }
+
+    &--edit {
+        content: url(/assets/edit.svg);
+    }
+
+    &--edit-black {
+        content: url(/assets/edit_black.svg);
+    }
+}
+
+.icon--home {
+    vertical-align: middle;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.icon--add {
+    vertical-align: middle;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.icon--edit {
+    vertical-align: middle;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}

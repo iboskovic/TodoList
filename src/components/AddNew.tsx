@@ -45,18 +45,18 @@ function AddNew () {
                 <div className="subHeader__hamburger" onClick={() => setActive(!active)}>
                     <div className={`subHeader__hamburger__line ${active ? 'active' : ''}`}></div>
                 </div>
-                <div className="subHeader__inputContainer">
-                    <div className="createNew">Create New Task</div>
+                <div className="subHeader__title">
+                    <div>Create New Task</div>
                 </div>
             </div>
-            <div className="flex">
-                <div className={`sidebar ${active ? 'active' : ''}`}>
-                    <div className="sidebar__wrapper">
+            <div className="main">
+                <div className={`main__sidebar ${active ? 'active' : ''}`}>
+                    <div className="main__sidebar__wrapper">
                     <a className="sideLinks"><i className="icon--home"></i>Home</a>
                     <a className="sideLinks"><i className="icon--add"></i>Add New</a>
                     </div>
                 </div>
-                <div className={ active ? "todoList" : "sidebar-inactive"}>
+                <div className={ active ? "main__content" : "main__content--widthFull"}>
                     <TaskForm onSubmit={handleSubmit}/>
                 </div>
             </div>

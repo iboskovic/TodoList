@@ -53,43 +53,37 @@ const TaskForm: React.FC<IProps> = (props) => {
   }
 
   return (
-      <div className={ active ? "todoList" : "sidebar-inactive"}>
-          <div className="form">
-              <div className="form__taskName">
-                  <div className="taskName">Task name</div>
-                  <input required type="text"  placeholder="Task name..." name="title" value={task} onChange={handleChange}/>{/*onKeyUp={keyUp}*/}
-              </div>
-              <div className="form__dueDate">
-                  <div className="dueDate">Due Date</div>
-                  <input type="date" name="date" value={date} onChange={handleDate}/>
-              </div>
-              <div className="form__priority">
-                  <div className="priority">Priority</div>
-                  <div className="select">
-                      <select value={prio} onChange={(e) => {
-                          const selectedOption = e.target.value;
-                          setPrio(selectedOption);
-                      }}>
-                          <option value="">-Please select-</option>
-                          <option value="High">High</option>
-                          <option value="Medium">Medium</option>
-                          <option value="Low">Low</option>
-                      </select>
-                  </div>
-                  <div className="checkBox">
-                      <input type="checkbox" checked={isChecked} onChange={(e) => {setIsChecked(e.target.checked)}} id="completed"/>
-                      <label htmlFor="completed">Completed</label>
-                  </div>
-              </div>
-              <button className="form__submitBtn" onClick={() =>props.onSubmit({title: task, date: date, priority: prio, completed: isChecked})}>Add Task / Update</button>
-          </div>
-      </div>
+        <div className={ active ? "main__content" : "main__content--widthFull"}>
+            <div className="card">
+                <div className="field">
+                    <div className="field__label">Task name</div>
+                    <input required type="text"  placeholder="Task name..." name="title" value={task} onChange={handleChange}/>
+                </div>
+                <div className="field">
+                    <div className="field__label">Due Date</div>
+                    <input type="date" name="date" value={date} onChange={handleDate}/>
+                </div>
+                <div className="field">
+                    <div className="field__label">Priority</div>
+                    <div className="field__select">
+                        <select value={prio} onChange={(e) => {
+                            const selectedOption = e.target.value;
+                            setPrio(selectedOption);
+                        }}>
+                            <option value="">-Please select-</option>
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                </div>
+                    <div className="field card__checkBox">
+                        <input className="checkBox--small" type="checkbox" checked={isChecked} onChange={(e) => {setIsChecked(e.target.checked)}} id="completed"/>
+                        <label htmlFor="completed">Completed</label>
+                    </div>
+                <button className="card__submitBtn" onClick={() =>props.onSubmit({title: task, date: date, priority: prio, completed: isChecked})}>Add Task / Update</button>
+            </div>
+        </div>
   )}
 
 export default TaskForm;
-// function TaskForm () {
-
-  
-// }
-
-// export default TaskForm;

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { FC, useState } from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import TaskService from '../service/TaskService';
@@ -28,20 +28,7 @@ const Main: FC = () => {
     const service = new TaskService();
 
     const handlechange = (event: ChangeEvent<HTMLInputElement>): void => {
-        // console.log(event.target.value);
         setSearch(event.target.value);
-        // let currentData: ITask[] = _.cloneDeep(taskData);
-        // setSearch(event.target.value);
-        // const data = currentData.filter(val => {
-        //     if (search == '') {
-        //         return val;
-        //     } else if (val.priority.toLowerCase().includes(search) || val.title.toLowerCase().includes(search)) {
-        //         return val;
-        //     }
-        // });
-
-        // console.log(data);
-        // setTaskData(data); 
     }
 
     const filterBy = (val: any) => {
@@ -57,10 +44,9 @@ const Main: FC = () => {
         const res = await service.get();
         setTaskData(res)
     }
-    
+
     useEffect(() => {
         fetchData();
-        //setSortBy(SortDirection.None);
     }, []);
 
     useEffect(() => {
@@ -71,7 +57,7 @@ const Main: FC = () => {
         }
         setTaskData(sortedArray);
     }, [sortBy])
-    
+
     function deleteTask(taskId: number) {
         const res = service.delete(taskId);
         if (res !== null) {
@@ -82,21 +68,19 @@ const Main: FC = () => {
             });
         }
     }
-    
+
     let history = useHistory();
-    
+
     function updateTask (id: any) {
         console.log(id);
         history.push('/edit/' + id)
     }
-    
-    // create state for active div class
+
     const [active, setActive] = useState(false);
 
     const toggleSortDate = () => {
         const val = sortBy === SortDirection.None || sortBy  === SortDirection.Desc ? SortDirection.Asc : SortDirection.Desc;
         setSortBy(val);
-
     }
 
     return (
@@ -105,41 +89,32 @@ const Main: FC = () => {
             <div className="subHeader__hamburger" onClick={() => setActive(!active)}>
                 <div className={`subHeader__hamburger__line ${active ? 'active' : ''}`}></div>
             </div>
-            <div className="subHeader__inputContainer">
-                <div className="created">Created Tasks</div>
+            <div className="subHeader__title">
+                <div>Created Tasks</div>
             </div>
         </div>
-        <div className="flex">
-            <div className={`sidebar ${active ? 'active' : ''}`}>
-                <div className="sidebar__wrapper">
-                    <a className="sideLinks"><i className="icon--home"></i>Home</a>
-                    <a className="sideLinks"><i className="icon--add"></i>Add New</a>
+        <div className="main">
+            <div className={`main__sidebar ${active ? 'active' : ''}`}>
+                <div className="main__sidebar__wrapper">
+                    <Link className="sideLinks" to='/'><i className="icon--home"></i>Home</Link>
+                    <Link className="sideLinks" to='/add'><i className="icon--add"></i>Add New</Link>
                 </div>
             </div>
-            <div className={ active ? "todoList" : "sidebar-inactive"}>
-            <div className="filterContainer">
-                <div className="filterContainer__filter">
-                    <input type="text" placeholder="Search..." className="filter--input" onChange={handlechange}/>
-                </div>
-                <div className="filterContainer__sort">
-                    <button className="sort--input" onClick={toggleSortDate}>Sort by date</button>
-                    {/* <select className="sort--input">
-                        <option value="">--Sort by--</option>
-                        <option value="newer" onChange={toggleSortNewer}>Newer</option>
-                        <option value="older" onChange={toggleSortOlder}>Older</option>
-                    </select> */}
-                </div>
-            </div>
-            {taskData.filter(filterBy).map(task =><div className={`task ${task.completed === true ? 'completed' : ''}`} key={task.id}>
-                <div className="task__line">
-                </div>
-                    <button className="task__button task__button--success" onClick={() => updateTask(task.id)}><i className="icon--edit-black"></i></button>
-                <div className="content">
-                    <div id="divTask">
-                        <div className="prio">{task.priority}</div>
-                        <div className="taskNameMiddle">{task.title}</div>
-                        <div className="date">{task.date}</div>
+            <div className={ active ? "main__content" : "main__content--widthFull"}>
+                <div className="main__content__filters">
+                    <div className="main__content__filters__search">
+                        <input type="text" placeholder="Search..." className="filterInput" onChange={handlechange}/>
                     </div>
+                    <div className="main__content__filters__sort">
+                        <button className="filterInput btn--transparent" onClick={toggleSortDate}>Sort by date</button>
+                    </div>
+                </div>
+                {taskData.filter(filterBy).map(task => <div className={`task ${task.completed === true ? 'taskCompleted' : ''}`} key={task.id}>
+                    <button className="task__button task__button--success" onClick={() => updateTask(task.id)}><i className="icon--edit-black"></i></button>
+                <div className="task__content">
+                    <div className="task__content__item">{task.priority}</div>
+                    <div className="task__content__item--center">{task.title}</div>
+                    <div className="task__content__item">{task.date}</div>
                 </div>
                 {task.completed === false ? <button className="task__button task__button--remove" onClick={() => deleteTask(task.id)}><i className="icon--remove"></i></button>
                 : <button className="task__button task__button--remove"><i className="icon--remove"></i></button>}
