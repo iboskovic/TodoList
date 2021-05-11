@@ -106,7 +106,7 @@ const Main: FC = () => {
                         <input type="text" placeholder="Search..." className="input--filter" onChange={handlechange}/>
                     </div>
                     <div className="main__content__filters__sort">
-                        <button className="btn btn--transparent input input--filter" onClick={toggleSortDate}>Sort by date</button>
+                        <button className="btn btn--transparent btn--med" onClick={toggleSortDate}>Sort by date</button>
                     </div>
                 </div>
                 {taskData.filter(filterBy).map(task => <div className={`task ${task.completed === true ? 'task--completed' : ''}`} key={task.id}>
