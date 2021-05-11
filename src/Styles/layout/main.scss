@@ -8,10 +8,10 @@
         height: 100vh;
         background-color: #e74c3c;
         transition: width 300ms ease-out;
-        border-right: 2px solid #2c3e50;
         
         &.active {
           width: 200px;
+          box-shadow: 2px 5px 5px 5px grey;
         }
       
         &__wrapper {
