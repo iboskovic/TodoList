@@ -109,16 +109,18 @@ const Main: FC = () => {
                         <button className="btn btn--transparent btn--med" onClick={toggleSortDate}>Sort by date</button>
                     </div>
                 </div>
-                {taskData.filter(filterBy).map(task => <div className={`task ${task.completed === true ? 'task--completed' : ''}`} key={task.id}>
+                {taskData.filter(filterBy).map(task => (
+                <div className={`task ${task.completed === true ? 'task--completed' : ''}`} key={task.id}>
                     <button className="btn task__button btn--success" onClick={() => updateTask(task.id)}><i className="icon icon--edit-black"></i></button>
-                <div className="task__content">
-                    <div className="task__content__item">{task.priority}</div>
-                    <div className="task__content__item--center">{task.title}</div>
-                    <div className="task__content__item">{task.date}</div>
+                    <div className="task__content">
+                        <div className="task__content__item">{task.priority}</div>
+                        <div className="task__content__item--center">{task.title}</div>
+                        <div className="task__content__item">{task.date}</div>
+                    </div>
+                    {task.completed === false ? <button className="btn task__button btn--remove" onClick={() => deleteTask(task.id)}><i className="icon icon--remove"></i></button>
+                    : <button className="btn task__button btn--remove"><i className="icon icon--remove"></i></button>}
                 </div>
-                {task.completed === false ? <button className="btn task__button btn--remove" onClick={() => deleteTask(task.id)}><i className="icon icon--remove"></i></button>
-                : <button className="btn task__button btn--remove"><i className="icon icon--remove"></i></button>}
-            </div>)}
+                ))}
             </div>
         </div>
         </div>
