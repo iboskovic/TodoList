@@ -87,7 +87,7 @@ const Main: FC = () => {
         <div className="App">
         <div className="sub-header">
             <div className="sub-header__hamburger" onClick={() => setActive(!active)}>
-                <div className={`sub-header__hamburger__line ${active ? 'active' : ''}`}></div>
+                <div className={`sub-header__hamburger__line ${active ? 'sub-header__hamburger--active' : ''}`}></div>
             </div>
             <div className="sub-header__title">
                 <div>Created Tasks</div>
@@ -96,8 +96,8 @@ const Main: FC = () => {
         <div className="main">
             <div className={`main__sidebar ${active ? 'active' : ''}`}>
                 <div className="main__sidebar__wrapper">
-                    <Link className="sideLinks" to='/'><i className="icon icon--home spc--bottom--sm spc--right--sm"></i>Home</Link>
-                    <Link className="sideLinks" to='/add'><i className="icon icon--add spc--bottom--sm spc--right--sm"></i>Add New</Link>
+                    <Link className="main__sidebar__wrapper__link" to='/'><i className="icon icon--home spc--bottom--sm spc--right--sm"></i>Home</Link>
+                    <Link className="main__sidebar__wrapper__link" to='/add'><i className="icon icon--add spc--bottom--sm spc--right--sm"></i>Add New</Link>
                 </div>
             </div>
             <div className={ active ? "main__content" : "main__content--widthFull"}>

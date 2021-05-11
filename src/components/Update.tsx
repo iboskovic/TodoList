@@ -38,7 +38,7 @@ function Update () {
         <Fragment>
             <div className="sub-header">
                 <div className="sub-header__hamburger" onClick={() => setActive(!active)}>
-                    <div className={`sub-header__hamburger__line ${active ? 'active' : ''}`}></div>
+                    <div className={`sub-header__hamburger__line ${active ? 'sub-header__hamburger--active' : ''}`}></div>
                 </div>
                 <div className="sub-header__title">
                     <div>Edit task</div>
@@ -47,8 +47,8 @@ function Update () {
             <div className="main">
                 <div className={`main__sidebar ${active ? 'active' : ''}`}>
                     <div className="main__sidebar__wrapper">
-                    <a className="sideLinks"><i className="icon icon--home spc--bottom--sm spc--right--sm"></i>Home</a>
-                    <a className="sideLinks"><i className="icon icon--add spc--bottom--sm spc--right--sm"></i>Add New</a>
+                    <a className="main__sidebar__wrapper__link"><i className="icon icon--home spc--bottom--sm spc--right--sm"></i>Home</a>
+                    <a className="main__sidebar__wrapper__link"><i className="icon icon--add spc--bottom--sm spc--right--sm"></i>Add New</a>
                     </div>
                 </div>
                 <div className={ active ? "main__content" : "main__content--widthFull"}>

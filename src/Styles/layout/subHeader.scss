@@ -56,16 +56,16 @@
             }
         }
 
-        .active{
+        &--active {
             background: transparent;
-        }
 
-        .active::before {
-            transform: rotate(135deg) ;
-        }
+            &::before {
+                transform: rotate(135deg) ;
+            }
 
-        .active::after {
-            transform: rotate(-135deg);
+            &::after {
+                transform: rotate(-135deg);
+            }
         }
     }
 
