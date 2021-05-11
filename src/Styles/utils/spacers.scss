@@ -1,0 +1,18 @@
+// spacers.scss
+
+.spc {
+    &--bottom {
+
+        &--sm {
+            margin-bottom: 5px;
+        }
+
+    }
+
+    &--right {
+
+        &--sm {
+            margin-right: 5px;
+        }
+    }
+}

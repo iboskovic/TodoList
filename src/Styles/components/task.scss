@@ -8,72 +8,47 @@
         padding: 0 24px;
         border: 1px solid rgb(196, 195, 195);
         cursor: pointer;
-        transition: 300ms;
-
-        &--success{
-            background-color: #2ecc71;
-            border-top-left-radius: 8px;
-            border-bottom-left-radius: 8px;
-            
-            &:hover {
-                background-color: #27ae60;
-            }
-        }
-
-        &--remove {
-            border-top-right-radius: 8px;
-            border-bottom-right-radius: 8px;
-            background-color: #e74c3c;
-
-            &:hover {
-                background-color: #c0392b;
-            }
-        }
     }
 
     &__content {
-    
         width: 400px;
         height: 50px;
-        border: 1px solid grey;
+        border-top: 1px solid rgb(196, 195, 195);
+        border-bottom: 1px solid rgb(196, 195, 195);
         display: flex;
         color: black;
         background-color: #ecf0f1;
-        display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid rgb(196, 195, 195);
-        border-right: none;
-        border-left: none;
         font-weight: 700;
-        
+
         &__item {
             text-align: center;
             width: 100px;
             padding: 16px 0;
         }
-    
+
         &__item--center {
             text-align: center;
             flex-grow: 2;
             white-space: normal;
         }
     }
-}
 
-.taskCompleted {
-    opacity: 0.4;
+    &--completed {
+        opacity: 0.4;
 
-    .task__button--success{
-        background-color: #ffffff;
-
-        &:hover {
-            background-color: #9b9b9b;
+        .btn--success {
+            background-color: #ffffff;
+    
+            &:hover {
+                background-color: #9b9b9b;
+            }
         }
-    }
-
-    .task__button--remove {
-        background-color: #ffffff;
-        cursor: default;
+    
+        .btn--remove {
+            background-color: #ffffff;
+            cursor: default;
+        }
     }
 }

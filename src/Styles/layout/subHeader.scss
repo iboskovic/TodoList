@@ -1,6 +1,6 @@
 // subHeader.scss
 
-.subHeader {
+.sub-header {
     background-color: #2c3e50;
     height: 150px;
     display: flex;
@@ -72,20 +72,5 @@
     &__title{
         font-size: 40px;
         color: white;
-    }
-        
-
-        button {
-            height: 42px;
-            border: none;
-            border-top-right-radius: 8px;
-            border-bottom-right-radius: 8px;
-            cursor: pointer;
-
-            &:hover {
-                background-color: rgb(219, 219, 219);
-                transition: .3s;
-            }
-        }
-    
+    }  
 }

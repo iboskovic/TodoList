@@ -85,39 +85,39 @@ const Main: FC = () => {
 
     return (
         <div className="App">
-        <div className="subHeader">
-            <div className="subHeader__hamburger" onClick={() => setActive(!active)}>
-                <div className={`subHeader__hamburger__line ${active ? 'active' : ''}`}></div>
+        <div className="sub-header">
+            <div className="sub-header__hamburger" onClick={() => setActive(!active)}>
+                <div className={`sub-header__hamburger__line ${active ? 'active' : ''}`}></div>
             </div>
-            <div className="subHeader__title">
+            <div className="sub-header__title">
                 <div>Created Tasks</div>
             </div>
         </div>
         <div className="main">
             <div className={`main__sidebar ${active ? 'active' : ''}`}>
                 <div className="main__sidebar__wrapper">
-                    <Link className="sideLinks" to='/'><i className="icon--home"></i>Home</Link>
-                    <Link className="sideLinks" to='/add'><i className="icon--add"></i>Add New</Link>
+                    <Link className="sideLinks" to='/'><i className="icon icon--home spc--bottom--sm spc--right--sm"></i>Home</Link>
+                    <Link className="sideLinks" to='/add'><i className="icon icon--add spc--bottom--sm spc--right--sm"></i>Add New</Link>
                 </div>
             </div>
             <div className={ active ? "main__content" : "main__content--widthFull"}>
                 <div className="main__content__filters">
                     <div className="main__content__filters__search">
-                        <input type="text" placeholder="Search..." className="filterInput" onChange={handlechange}/>
+                        <input type="text" placeholder="Search..." className="input--filter" onChange={handlechange}/>
                     </div>
                     <div className="main__content__filters__sort">
-                        <button className="filterInput btn--transparent" onClick={toggleSortDate}>Sort by date</button>
+                        <button className="btn btn--transparent input input--filter" onClick={toggleSortDate}>Sort by date</button>
                     </div>
                 </div>
-                {taskData.filter(filterBy).map(task => <div className={`task ${task.completed === true ? 'taskCompleted' : ''}`} key={task.id}>
-                    <button className="task__button task__button--success" onClick={() => updateTask(task.id)}><i className="icon--edit-black"></i></button>
+                {taskData.filter(filterBy).map(task => <div className={`task ${task.completed === true ? 'task--completed' : ''}`} key={task.id}>
+                    <button className="btn task__button btn--success" onClick={() => updateTask(task.id)}><i className="icon icon--edit-black"></i></button>
                 <div className="task__content">
                     <div className="task__content__item">{task.priority}</div>
                     <div className="task__content__item--center">{task.title}</div>
                     <div className="task__content__item">{task.date}</div>
                 </div>
-                {task.completed === false ? <button className="task__button task__button--remove" onClick={() => deleteTask(task.id)}><i className="icon--remove"></i></button>
-                : <button className="task__button task__button--remove"><i className="icon--remove"></i></button>}
+                {task.completed === false ? <button className="btn task__button btn--remove" onClick={() => deleteTask(task.id)}><i className="icon icon--remove"></i></button>
+                : <button className="btn task__button btn--remove"><i className="icon icon--remove"></i></button>}
             </div>)}
             </div>
         </div>

@@ -57,16 +57,16 @@ const TaskForm: React.FC<IProps> = (props) => {
             <div className="card">
                 <div className="field">
                     <div className="field__label">Task name</div>
-                    <input required type="text"  placeholder="Task name..." name="title" value={task} onChange={handleChange}/>
+                    <input className="input" required type="text"  placeholder="Task name..." name="title" value={task} onChange={handleChange}/>
                 </div>
                 <div className="field">
                     <div className="field__label">Due Date</div>
-                    <input type="date" name="date" value={date} onChange={handleDate}/>
+                    <input className="input" type="date" name="date" value={date} onChange={handleDate}/>
                 </div>
                 <div className="field">
                     <div className="field__label">Priority</div>
                     <div className="field__select">
-                        <select value={prio} onChange={(e) => {
+                        <select className="input input--dropdown" value={prio} onChange={(e) => {
                             const selectedOption = e.target.value;
                             setPrio(selectedOption);
                         }}>
@@ -78,10 +78,10 @@ const TaskForm: React.FC<IProps> = (props) => {
                     </div>
                 </div>
                     <div className="field card__checkBox">
-                        <input className="checkBox--small" type="checkbox" checked={isChecked} onChange={(e) => {setIsChecked(e.target.checked)}} id="completed"/>
+                        <input className="input--check spc--right--sm" type="checkbox" checked={isChecked} onChange={(e) => {setIsChecked(e.target.checked)}} id="completed"/>
                         <label htmlFor="completed">Completed</label>
                     </div>
-                <button className="card__btn" onClick={() =>props.onSubmit({title: task, date: date, priority: prio, completed: isChecked})}>Add Task / Update</button>
+                <button className="btn btn--big" onClick={() =>props.onSubmit({title: task, date: date, priority: prio, completed: isChecked})}>Add Task / Update</button>
             </div>
         </div>
   )}

@@ -1,5 +1,7 @@
 // icons.scss
 .icon {
+    vertical-align: middle;
+
     &--remove {
         content: url(/assets/remove.svg);
     }
@@ -27,22 +29,4 @@
     &--edit-black {
         content: url(/assets/edit_black.svg);
     }
-}
-
-.icon--home {
-    vertical-align: middle;
-    margin-bottom: 5px;
-    margin-right: 5px;
-}
-
-.icon--add {
-    vertical-align: middle;
-    margin-bottom: 5px;
-    margin-right: 5px;
-}
-
-.icon--edit {
-    vertical-align: middle;
-    margin-bottom: 5px;
-    margin-right: 5px;
 }
